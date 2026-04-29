@@ -1,0 +1,397 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resume Website</title>
+    <link rel="stylesheet" href="CSS/StyleSheet.css">
+    <style>
+        /* Education specific styles */
+        .education-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .education-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .education-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Education Cards Grid */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .education-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 96, 100, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            gap: 20px;
+            border-left: 4px solid transparent;
+        }
+
+        .education-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 96, 100, 0.3);
+            border-left-color: #006064;
+        }
+
+        /* Rounded Image Holder */
+        .card-image {
+            width: 80px;
+            height: 80px;
+            min-width: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #006064 0%, #00838f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 5px;
+            border-radius: 6px;
+            background-color: rgba(0, 96, 100, 0.1);
+        }
+
+        .skill-tag {
+            background-color: rgba(0, 96, 100, 0.2);
+            padding: 4px 10px;
+            border-radius: 4px;
+            color: #004d53;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Card Content */
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-subtitle {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #006064;
+            margin: 0 0 8px 0;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 15px;
+            flex: 1;
+        }
+        /* Progress Bar */
+        .progress-bar-container {
+            margin-top: auto;
+        }
+
+        .progress-label {
+            font-size: 0.85rem;
+            color: #006064;
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #80deea;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #006064 0%, #00838f 100%);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        /* Dark theme support */
+        body.dark-theme .education-card {
+            background: var(--card);
+            box-shadow: 0 4px 12px rgba(128, 222, 234, 0.2);
+        }
+
+        body.dark-theme .card-subtitle {
+            color: #80deea;
+        }
+
+        body.dark-theme .card-description {
+            color: var(--muted);
+        }
+
+        body.dark-theme .progress-bar {
+            background: #004d53;
+        }
+
+        body.dark-theme .progress-label {
+            color: #80deea;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .education-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .education-card {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .education-container {
+                padding: 20px 15px;
+            }
+
+            .education-header h1 {
+                font-size: 2rem;
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .card-subtitle {
+                font-size: 1rem;
+            }
+
+            .card-image {
+                width: 70px;
+                height: 70px;
+                min-width: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <h1 class="site-title">
+                <div class="profile-pic">
+                    <img src="Images\Prof_IMG.jpg" alt="Profile">
+                </div>
+                <a href="index.html">Mr. Ong's Website'</a>
+            </h1>
+            <nav class="site-nav">
+                <a href="AboutMe.html">About Me</a>
+                <a href="Education.html">Education Level</a>
+                <a href="#contact" id="contactLink">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button id="openPanelBtn" class="btn-icon small">
+                    <img src="https://freemiumicons.com/wp-content/uploads/2023/06/it-project-icon-1.png" alt="Menu">
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="education-container">
+        <section class="education-header">
+            <h1>Education Level</h1>
+            <p>My educational background and qualifications</p>
+        </section>
+
+        <!-- Education Cards Grid (2 columns, 4 rows = 8 cards) -->
+        <section class="education-grid">
+            <!-- Card 1 -->
+            <article class="education-card">
+                <div class="card-content">
+                    <h3 class="card-subtitle">C++</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Text-Turn based Game</span>
+                        <span class="skill-tag">Crude and Database</span>
+                        <span class="skill-tag">Intermediate-level programming</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-label">
+                            <span>Completion</span>
+                            <span>56%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="education-card">
+                <div class="card-content">
+                    <h3 class="card-subtitle">Web Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Web-Design</span>
+                        <span class="skill-tag">Interactive Objects</span>
+                        <span class="skill-tag">JavaScript Implementation</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-label">
+                            <span>Completion</span>
+                            <span>78%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 78%"></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="education-card">
+                <div class="card-content">
+                    <h3 class="card-subtitle">C#</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Basic Visual Element Game Creation</span>
+                        <span class="skill-tag"> Database Structure</span>
+                        <span class="skill-tag">Intermediate-level programming</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-label">
+                            <span>Completion</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="education-card">
+                <div class="card-content">
+                    <h3 class="card-subtitle">Database Design</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Microsoft SQL</span>
+                        <span class="skill-tag">XAMPP</span>
+                        <span class="skill-tag">Crude/File: I/O</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-label">
+                            <span>Completion</span>
+                            <span>69%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 69%"></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 5 -->
+            <article class="education-card">
+                <div class="card-content">
+                    <h3 class="card-subtitle">Windows Form .NET</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Visual turn-based Game</span>
+                        <span class="skill-tag">Ordering System</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-label">
+                            <span>Completion</span>
+                            <span>100%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- Right side panel (collapsed by default) -->
+    <aside class="side-panel" id="sidePanel" aria-hidden="true">
+        <div class="panel-tab" id="panelTab" role="button" tabindex="0" aria-controls="sidePanel">›</div>
+        <div class="panel-content">
+            <h3>Explore</h3>
+            <div class="panel-section">
+                <button class="topic-toggle">Projects<span class="caret">▾</span></button>
+                <div class="topic-list" aria-hidden="true">
+                    <a href="index.html#cpp-project" class="topic-item">C++</a>
+                    <a href="index.html#website-project" class="topic-item">Website</a>
+                    <a href="index.html#csharp-project" class="topic-item">C#</a>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Contact Modal (Popup Form) -->
+    <div class="modal-overlay" id="contactModal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal" aria-label="Close modal">&times;</button>
+
+            <h2>Contact Me</h2>
+            <p>Have a question or want to work together? Send me a message!</p>
+
+            <form action="https://formspree.io/f/mgorgrga" method="POST" class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="What's this about?">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" required placeholder="Your message here..."></textarea>
+                </div>
+
+                <!-- Honeypot spam protection -->
+                <input type="text" name="_gotcha" style="display:none">
+
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <footer id="site-footer" class="site-footer">
+        <div class="container footer-centered">
+            <p class="footer-name">Stephen Sander A. Ong</p>
+            <p class="footer-title">Computer Science Student & Aspiring Developer</p>
+            <div class="footer-actions">
+                <a href="AboutMe.html" class="btn">Who am I?</a>
+            </div>
+            <p class="footer-copyright">© 2026 Stephen Sander A. Ong. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script defer src="Js/JavaScript.js"></script>
+</body>
+</html>
